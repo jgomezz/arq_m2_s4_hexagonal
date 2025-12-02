@@ -6,7 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
-import pe.edu.tecsup.hexagonal.app.application.port.input.UserService;
+import pe.edu.tecsup.hexagonal.app.application.port.input.DeleteUserUseCase;
+import pe.edu.tecsup.hexagonal.app.application.port.input.UserUseCase;
 import pe.edu.tecsup.hexagonal.app.domain.exception.InvalidUserDataException;
 import pe.edu.tecsup.hexagonal.app.domain.exception.UserNotFoundException;
 import pe.edu.tecsup.hexagonal.app.domain.model.User;
@@ -23,7 +24,8 @@ import java.util.List;
 @Slf4j
 public class UserController {
 
-    private final UserService userService;
+    private final UserUseCase userService;
+    private final DeleteUserUseCase deleteUserUseCase;
 
     private final UserMapper mapper;
 
@@ -142,7 +144,7 @@ public class UserController {
         try {
             log.info("Deleting user with ID: {}", id);
 
-            userService.deleteUser(id);
+            deleteUserUseCase.deleteUser(id);
 
             log.info("User deleted successfully with ID: {}", id);
             return ResponseEntity.noContent().build();

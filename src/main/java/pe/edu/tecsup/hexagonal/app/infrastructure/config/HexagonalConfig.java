@@ -4,9 +4,11 @@ package pe.edu.tecsup.hexagonal.app.infrastructure.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import pe.edu.tecsup.hexagonal.app.application.port.input.CreateUserUseCase;
 import pe.edu.tecsup.hexagonal.app.application.port.input.DeleteUserUseCase;
 import pe.edu.tecsup.hexagonal.app.application.port.input.UserUseCase;
 import pe.edu.tecsup.hexagonal.app.application.port.output.UserRepositoryPort;
+import pe.edu.tecsup.hexagonal.app.application.usecase.CreateUserUseCaseImpl;
 import pe.edu.tecsup.hexagonal.app.application.usecase.DeleteUserUseCaseImpl;
 import pe.edu.tecsup.hexagonal.app.application.usecase.UserUseCaseImpl;
 
@@ -23,4 +25,8 @@ public class HexagonalConfig {
         return new DeleteUserUseCaseImpl(userRepository);
     }
 
+    @Bean
+    public CreateUserUseCase createUserUseCase(UserRepositoryPort userRepository) {
+        return new CreateUserUseCaseImpl(userRepository);
+    }
 }

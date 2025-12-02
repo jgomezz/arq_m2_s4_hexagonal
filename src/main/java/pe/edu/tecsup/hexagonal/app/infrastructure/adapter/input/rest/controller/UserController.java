@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
+import pe.edu.tecsup.hexagonal.app.application.port.input.CreateUserUseCase;
 import pe.edu.tecsup.hexagonal.app.application.port.input.DeleteUserUseCase;
 import pe.edu.tecsup.hexagonal.app.application.port.input.UserUseCase;
 import pe.edu.tecsup.hexagonal.app.domain.exception.InvalidUserDataException;
@@ -25,6 +26,7 @@ import java.util.List;
 public class UserController {
 
     private final UserUseCase userService;
+    private final CreateUserUseCase createUserUseCase;
     private final DeleteUserUseCase deleteUserUseCase;
 
     private final UserMapper mapper;
@@ -35,7 +37,7 @@ public class UserController {
             log.info("Creating createUser with name: {} and email: {}", request.getName(), request.getEmail());
 
             User newUser = this.mapper.toDomain(request);
-            User createUser = this.userService.createUser(newUser);
+            User createUser = this.createUserUseCase.execute(newUser);
 
             if (createUser == null) {
                 log.warn("User service returned null");
@@ -144,7 +146,7 @@ public class UserController {
         try {
             log.info("Deleting user with ID: {}", id);
 
-            deleteUserUseCase.deleteUser(id);
+            deleteUserUseCase.execute(id);
 
             log.info("User deleted successfully with ID: {}", id);
             return ResponseEntity.noContent().build();

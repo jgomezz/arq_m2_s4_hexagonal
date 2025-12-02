@@ -21,7 +21,7 @@ public class DeleteUserUseCaseImpl implements DeleteUserUseCase {
     private final UserRepositoryPort userRepositoryPort;
 
     @Override
-    public void deleteUser(Long id) {
+    public void execute(Long id) {
         if (id == null || id <= 0) {
             throw new IllegalArgumentException("Invalid ID");
         }

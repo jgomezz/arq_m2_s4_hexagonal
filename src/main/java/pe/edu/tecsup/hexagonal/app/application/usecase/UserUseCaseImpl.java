@@ -19,22 +19,7 @@ public class UserUseCaseImpl implements UserUseCase {
 
     private final UserRepositoryPort userRepositoryPort;
 
-    @Override
-    public User createUser(User newUser) {
 
-        if (newUser == null) {
-            throw new InvalidUserDataException("User cannot be null");
-        }
-        // Domain validation
-        validateUserInput(newUser);
-
-        // Business rule: Check if email already exists
-        if (userRepositoryPort.existsByEmail(newUser.getEmail())) {
-            throw new InvalidUserDataException("Email already exists: " + newUser.getEmail());
-        }
-
-        return userRepositoryPort.save(newUser);
-    }
 
     @Override
     @Transactional(readOnly = true)

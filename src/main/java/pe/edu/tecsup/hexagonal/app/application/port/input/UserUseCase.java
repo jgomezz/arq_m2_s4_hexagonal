@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface UserUseCase {
 
-    User createUser(User newUser);
 
     User findUser(Long id);
     List<User> findAllUsers();

@@ -6,18 +6,20 @@ import org.springframework.context.annotation.Configuration;
 
 import pe.edu.tecsup.hexagonal.app.application.port.input.CreateUserUseCase;
 import pe.edu.tecsup.hexagonal.app.application.port.input.DeleteUserUseCase;
-import pe.edu.tecsup.hexagonal.app.application.port.input.UserUseCase;
+import pe.edu.tecsup.hexagonal.app.application.port.input.UpdateUserUseCase;
+import pe.edu.tecsup.hexagonal.app.application.port.input.FindUserUseCase;
 import pe.edu.tecsup.hexagonal.app.application.port.output.UserRepositoryPort;
 import pe.edu.tecsup.hexagonal.app.application.usecase.CreateUserUseCaseImpl;
 import pe.edu.tecsup.hexagonal.app.application.usecase.DeleteUserUseCaseImpl;
-import pe.edu.tecsup.hexagonal.app.application.usecase.UserUseCaseImpl;
+import pe.edu.tecsup.hexagonal.app.application.usecase.UpdateUserUseCaseImpl;
+import pe.edu.tecsup.hexagonal.app.application.usecase.FindUserUseCaseImpl;
 
 @Configuration
 public class HexagonalConfig {
 
     @Bean
-    public UserUseCase userService(UserRepositoryPort userRepository) {
-        return new UserUseCaseImpl(userRepository);
+    public FindUserUseCase userService(UserRepositoryPort userRepository) {
+        return new FindUserUseCaseImpl(userRepository);
     }
 
     @Bean
@@ -28,5 +30,10 @@ public class HexagonalConfig {
     @Bean
     public CreateUserUseCase createUserUseCase(UserRepositoryPort userRepository) {
         return new CreateUserUseCaseImpl(userRepository);
+    }
+
+    @Bean
+    public UpdateUserUseCase updateUserUseCase(UserRepositoryPort userRepository) {
+        return new UpdateUserUseCaseImpl(userRepository);
     }
 }

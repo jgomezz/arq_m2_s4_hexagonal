@@ -8,7 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.tecsup.hexagonal.app.application.port.input.CreateUserUseCase;
 import pe.edu.tecsup.hexagonal.app.application.port.input.DeleteUserUseCase;
-import pe.edu.tecsup.hexagonal.app.application.port.input.UserUseCase;
+import pe.edu.tecsup.hexagonal.app.application.port.input.UpdateUserUseCase;
+import pe.edu.tecsup.hexagonal.app.application.port.input.FindUserUseCase;
 import pe.edu.tecsup.hexagonal.app.domain.exception.InvalidUserDataException;
 import pe.edu.tecsup.hexagonal.app.domain.exception.UserNotFoundException;
 import pe.edu.tecsup.hexagonal.app.domain.model.User;
@@ -25,9 +26,10 @@ import java.util.List;
 @Slf4j
 public class UserController {
 
-    private final UserUseCase userService;
+    private final FindUserUseCase userService;
     private final CreateUserUseCase createUserUseCase;
     private final DeleteUserUseCase deleteUserUseCase;
+    private final UpdateUserUseCase updateUserUseCase;
 
     private final UserMapper mapper;
 
@@ -119,7 +121,7 @@ public class UserController {
             log.info("Updating user with ID: {} with data: name={}, email={}", id, request.getName(), request.getEmail());
 
             User user = mapper.toDomain(request);
-            User updatedUser = userService.updateUser(id, user);
+            User updatedUser = updateUserUseCase.execute(id, user);
 
             if (updatedUser == null) {
                 log.warn("User service returned null for update");

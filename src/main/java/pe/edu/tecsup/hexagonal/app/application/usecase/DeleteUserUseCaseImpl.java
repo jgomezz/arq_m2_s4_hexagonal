@@ -5,13 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import pe.edu.tecsup.hexagonal.app.application.port.input.DeleteUserUseCase;
-import pe.edu.tecsup.hexagonal.app.application.port.input.UserUseCase;
 import pe.edu.tecsup.hexagonal.app.application.port.output.UserRepositoryPort;
-import pe.edu.tecsup.hexagonal.app.domain.exception.InvalidUserDataException;
 import pe.edu.tecsup.hexagonal.app.domain.exception.UserNotFoundException;
-import pe.edu.tecsup.hexagonal.app.domain.model.User;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Transactional

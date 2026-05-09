@@ -12,8 +12,10 @@ public interface UserService {
     User findUser(Long id);
     List<User> findAllUsers();
     List<User> findUsersByName(String name);
+    boolean existsByEmail(String email);
 
     User updateUser(Long id, User user);
+
     void deleteUser(Long id);
-    boolean existsByEmail(String email);
+
 }

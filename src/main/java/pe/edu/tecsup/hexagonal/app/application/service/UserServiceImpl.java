@@ -3,6 +3,7 @@ package pe.edu.tecsup.hexagonal.app.application.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pe.edu.tecsup.hexagonal.app.application.port.input.UserService;
 import pe.edu.tecsup.hexagonal.app.application.port.output.UserRepositoryPort;
@@ -12,6 +13,7 @@ import pe.edu.tecsup.hexagonal.app.domain.model.User;
 
 import java.util.List;
 
+//@Service
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
